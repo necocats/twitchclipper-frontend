@@ -13,16 +13,16 @@ function Navbar({ twitchClipperIconSrc, profileIconSrc, isLogin }: NavbarProps){
                     <img src={twitchClipperIconSrc} alt="" width="30" height="24" className="d-inline-block align-text-top"/>
                     Twitch Clipper
                     </a>
-                <div className="d-flex justify-content-center align-items-center">
-                    <form>
-                        {isLogin ?
-                        <button className="btn btn-outline-success me-2" type="button">ログアウト</button>
-                        : 
-                        <button className="btn btn-outline-success me-2" type="button">ログイン</button>
-                        }
-                    </form>
-                    <img src={profileIconSrc} alt="" width="30" height="24"/>
-                </div>
+                    <div className="d-flex justify-content-center align-items-center">
+                        <form>
+                            {isLogin ?
+                            <button className="btn btn-outline-success me-2" type="button">ログアウト</button>
+                            : 
+                            <button className="btn btn-outline-success me-2" type="button">ログイン</button>
+                            }
+                        </form>
+                        <img src={profileIconSrc} alt="" width="30" height="24"/>
+                    </div>
                 </div>
             </nav>
         </>
