@@ -1,5 +1,5 @@
 import "bootstrap"
-import Navbar from "../Components/navbar"
+import Navbar from "../components/navbar"
 
 export const Components = () => {
   return(
