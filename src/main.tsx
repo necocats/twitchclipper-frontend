@@ -4,9 +4,12 @@ import App from './App.tsx'
 // import './index.css'
 import "bootstrap"; // 追加
 import "bootstrap/dist/css/bootstrap.min.css"; // 追加
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+);
