@@ -10,17 +10,18 @@ interface Playlist {
 
 interface PlaylistsListProps {
   playlists: Playlist[];
+  onClick?: () => void;
 }
 
-const PlaylistsList: React.FC<PlaylistsListProps> = ({ playlists }) => {
+const PlaylistsList: React.FC<PlaylistsListProps> = ({ playlists, onClick }) => {
   return (
     <>
       <div>
         <div className="d-flex flex-column">
           {playlists.map((playlist) => (
-            <PlaylistCard key={playlist.id} name={playlist.name} description={playlist.description} />
+            <PlaylistCard key={playlist.id} name={playlist.name} description={playlist.description} onClick={onClick} />
           ))}
-          <PlaylistCard name={'新規プレイリスト作成'} description={''}/>
+          <PlaylistCard name={'新規プレイリスト作成'} description={''} onClick={onClick}/>
         </div>
       </div>
     </>
