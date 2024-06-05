@@ -1,4 +1,4 @@
-// PlaylistsList.tsx
+// Sidebar.tsx
 import React from 'react';
 import PlaylistCard from './PlaylistCard';
 
@@ -8,12 +8,12 @@ interface Playlist {
   description: string;
 }
 
-interface PlaylistsListProps {
+interface SidebarProps {
   playlists: Playlist[];
   onClick?: () => void;
 }
 
-const PlaylistsList: React.FC<PlaylistsListProps> = ({ playlists, onClick }) => {
+const Sidebar: React.FC<SidebarProps> = ({ playlists, onClick }) => {
   return (
     <>
       <div>
@@ -28,4 +28,4 @@ const PlaylistsList: React.FC<PlaylistsListProps> = ({ playlists, onClick }) => 
   );
 };
 
-export default PlaylistsList;
+export default Sidebar;
