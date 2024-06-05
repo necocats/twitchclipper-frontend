@@ -1,9 +1,8 @@
-// Sidebar.tsx
 import React from 'react';
 import PlaylistCard from './PlaylistCard';
 
 interface Playlist {
-  id: number;
+  id: string;
   name: string;
   description: string;
 }

@@ -1,0 +1,12 @@
+.card {
+  width: 100%; 
+  max-width: 300px; /* 最大幅 */
+  height: 300px; /* 高さ */
+  overflow: hidden; /* コンテンツがカードを超えないように */
+}
+
+.card-img-top {
+  width: 100%; /* 幅をカードに合わせる */
+  height: 100%; /* 高さ */
+  object-fit: cover; /* アスペクト比を維持しつつ、カードに収める */
+}

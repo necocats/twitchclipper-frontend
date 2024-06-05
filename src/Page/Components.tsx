@@ -1,7 +1,8 @@
 import "bootstrap"
 import Navbar from "../components/navbar"
 import Sidebar from "../components/Sidebar"
-import { playlists } from '../Data/DummyData'
+import { clips, playlists } from '../Data/DummyData'
+import Cliplist from "../components/Cliplist"
 
 export const Components = () => {
   return(
@@ -12,6 +13,9 @@ export const Components = () => {
       { /* Sidebar */ }
       <h1>Sidebar</h1>
       <Sidebar playlists={playlists} />
+      { /* Cliplist */ }
+      <h1>ClipList</h1>
+      <Cliplist clips={clips} />
     </>
   )
 }
