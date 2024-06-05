@@ -5,15 +5,15 @@
 export const user = [
   {
     id: "1",
-    username: 'ichiro',
+    username: "ichiro",
   },
   {
     id: "2",
-    username: 'jiro',
+    username: "jiro",
   },
   {
     id: "3",
-    username: 'saburo',
+    username: "saburo",
   },
 ]
 
@@ -21,21 +21,24 @@ export const user = [
 export const clips = [
   {
     id: "1",
-    title: 'ClipTitle1',
-    url: 'https://bit.ly/3x1L520',
-    thumbnail_url: 'https://bit.ly/4bYilWy',
+    title: "ClipTitle1",
+    broadcaster_name: "nobunaga",
+    url: "https://bit.ly/3x1L520",
+    thumbnail_url: "https://bit.ly/3Vt8W3R"
   },
   {
     id: "2",
-    title: 'ClipTitle2',
-    url: 'https://bit.ly/3X7b6Ye',
-    thumbnail_url: 'https://bit.ly/3x1XW4a',
+    title: "ClipTitle2",
+    broadcaster_name: "hideyosi",
+    url: "https://bit.ly/3X7b6Ye",
+    thumbnail_url: "https://bit.ly/3Rfao7A",
   },
   {
     id: "3",
-    title: 'ClipTitle3',
-    url: 'https://bit.ly/3wNUGJK',
-    thumbnail_url: 'https://bit.ly/3KsriM2',
+    title: "ClipTitle3",
+    broadcaster_name: "ieyasu",
+    url: "https://bit.ly/3wNUGJK",
+    thumbnail_url: "https://bit.ly/3VaBwWz",
   },
 ]
 

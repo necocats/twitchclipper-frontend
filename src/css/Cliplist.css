@@ -1,0 +1,10 @@
+.clip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* カード間のスペース */
+}
+
+.clip-list .card {
+  flex: 1 1 calc(33.333% - 16px); 
+  max-width: calc(33.333% - 16px); 
+}

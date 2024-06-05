@@ -1,4 +1,3 @@
-// PlaylistCard.ts
 interface PlaylistCardProps {
   name: string;
   description: string;
