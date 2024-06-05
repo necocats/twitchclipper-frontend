@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FieldValue } from 'firebase/firestore';
 import PlaylistCard from './PlaylistCard';
 import axios from 'axios';
+import '../css/Sidebar.css'; // CSSファイルをインポート
 
 interface Playlist {
   id: string;
@@ -13,7 +14,7 @@ interface Playlist {
 }
 
 const Sidebar: React.FC = () => {
-  const [ playlists, setPlaylists ] = useState<Playlist[]>([]);
+  const [playlists, setPlaylists] = useState<Playlist[]>([]);
   useEffect(() => {
     const fetchPlaylists = async () => {
       try {
@@ -22,22 +23,21 @@ const Sidebar: React.FC = () => {
         setPlaylists(response.data);
         
       } catch (error) {
-        console.error('fethPlaylists Error: ', error);
+        console.error('fetchPlaylists Error: ', error);
       }
     }
     fetchPlaylists();
   }, []);
+
   return (
-    <>
-      <div>
-        <div className="d-flex flex-column">
-          {playlists.map((playlist) => (
-            <PlaylistCard key={playlist.id} name={playlist.playlist_name} description={playlist.description} onClick={() => {}} />
-          ))}
-          <PlaylistCard name={'新規プレイリスト作成'} description={''} onClick={() => {}}/>
-        </div>
+    <div className="sidebar">
+      <div className="d-flex flex-column">
+        {playlists.map((playlist) => (
+          <PlaylistCard key={playlist.id} name={playlist.playlist_name} description={playlist.description} onClick={() => {}} />
+        ))}
+        <PlaylistCard name={'新規プレイリスト作成'} description={''} onClick={() => {}}/>
       </div>
-    </>
+    </div>
   );
 };
 

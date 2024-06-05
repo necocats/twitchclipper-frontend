@@ -7,7 +7,7 @@ interface NavbarProps {
 function Navbar({ twitchClipperIconSrc, profileIconSrc, isLogin }: NavbarProps){
     return (
         <>
-            <nav className="navbar navbar-light bg-light d-flex">
+            <nav className="navbar fixed-top bg-body-tertiary">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="#">
                     <img src={twitchClipperIconSrc} alt="" width="30" height="24" className="d-inline-block align-text-top"/>

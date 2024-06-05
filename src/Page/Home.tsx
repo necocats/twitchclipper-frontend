@@ -7,7 +7,8 @@ function Home() {
   return (
     <>
       <div>Home</div>
-      <a href='/components'>/components</a>
+      <a href='/components'>/components</a><br/>
+      <a href="/page">/page</a>
     </>
   )
 }
