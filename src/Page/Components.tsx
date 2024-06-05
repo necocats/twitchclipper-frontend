@@ -1,8 +1,9 @@
 import "bootstrap"
-import Navbar from "../components/navbar"
+import Navbar from "../components/Navbar"
 import Sidebar from "../components/Sidebar"
-import { clips, playlists } from '../Data/DummyData'
+import { clips } from '../Data/DummyData'
 import Cliplist from "../components/Cliplist"
+// import { playlists } from '../Data/DummyData'
 
 export const Components = () => {
   return(
@@ -12,7 +13,7 @@ export const Components = () => {
       <Navbar twitchClipperIconSrc={""} profileIconSrc={""} isLogin={false}/>
       { /* Sidebar */ }
       <h1>Sidebar</h1>
-      <Sidebar playlists={playlists} />
+      <Sidebar />
       { /* Cliplist */ }
       <h1>ClipList</h1>
       <Cliplist clips={clips} />

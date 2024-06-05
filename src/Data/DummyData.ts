@@ -45,18 +45,31 @@ export const clips = [
 //プレイリスト情報
 export const playlists = [
   {
-    id: "1",
-    name: "Playlist1",
-    description: "hogehoge",
+      "description": "yeah",
+      "id": "02510ee2-9a20-4491-8134-50a2b93a91b0",
+      "updated_at": {
+          "seconds": 1717403935,
+          "nanoseconds": 201000000
+      },
+      "created_at": {
+          "seconds": 1717403935,
+          "nanoseconds": 201000000
+      },
+      "playlist_name": "VCR Rust in 2024",
+      "user_id": "1"
   },
   {
-    id: "2",
-    name: "Playlist2",
-    description: "永遠なる疾風の運命の皇子",
-  },
-  {
-    id: "3",
-    name: "Playlist3",
-    description: "いらっしゃいませこんばんは、ご注文お伺いします。",
-  },
+      "user_id": "1",
+      "updated_at": {
+          "seconds": 1717403887,
+          "nanoseconds": 549000000
+      },
+      "description": "funny moments",
+      "playlist_name": "My Best Clips",
+      "created_at": {
+          "seconds": 1717403887,
+          "nanoseconds": 549000000
+      },
+      "id": "96034864-1bd6-407a-9ffb-73c4d56e69c6"
+  }
 ]
