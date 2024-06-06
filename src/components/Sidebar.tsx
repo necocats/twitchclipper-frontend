@@ -29,21 +29,25 @@ const Sidebar: React.FC = () => {
   }, []);
 
   return (
+    <>
       <nav className="sidebar bg-dark">
         <ul className="nav flex-column">
             <li className="nav-item">
               <div className="nav-top text-white">プレイリスト一覧</div>
             </li>
             {playlists.map((playlist) => (
-              <li className="nav-item">
+              <li className="nav-item" key={playlist.id}>
                 <div className="nav-link text-white" onClick={() => {console.log('押すとプレイリストのidをCliplist.tsxにわたして、クリップリスト更新')}}>{playlist.playlist_name}</div>
               </li>
             ))}
-            <li className="nav-item">
-              <div className="nav-link text-white" onClick={() => {console.log('押すとプレイリスト作成のポップアップ表示')}}>+ 新規プレイリスト作成</div>
+            <li className='nav-item'>
+              <div className="nav-link text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              + 新規プレイリスト作成
+              </div>
             </li>
         </ul>
       </nav>
+    </>
   );
 };
 

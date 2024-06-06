@@ -5,14 +5,15 @@ import Sidebar from '../components/Sidebar';
 import { clips } from '../Data/DummyData';
 import '../css/Card.css';
 import '../css/Cliplist.css'
+import AddClipModal from '../components/AddClipModal';
 
 const Toppage: React.FC = () => {
   return (
     <div>
       <header>
         <Navbar
-          twitchClipperIconSrc="/public/vite.svg"
-          profileIconSrc="/public/vite.svg"
+          twitchClipperIconSrc="/vite.svg"
+          profileIconSrc="/vite.svg"
           isLogin={false}
         />
       </header>
@@ -20,6 +21,7 @@ const Toppage: React.FC = () => {
         <Sidebar />
         <Cliplist clips={clips}/>
       </div>
+      <AddClipModal />
     </div>
   );
 };
