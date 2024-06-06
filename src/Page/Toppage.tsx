@@ -11,20 +11,14 @@ const Toppage: React.FC = () => {
     <div>
       <header>
         <Navbar
-          twitchClipperIconSrc=""
-          profileIconSrc=""
+          twitchClipperIconSrc="/public/vite.svg"
+          profileIconSrc="/public/vite.svg"
           isLogin={false}
         />
       </header>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col-md-3">
-            <Sidebar />
-          </div>
-          <div className="col-md-9">
-            <Cliplist clips={clips} />
-          </div>
-        </div>
+      <div className='d-flex'>
+        <Sidebar />
+        <Cliplist clips={clips}/>
       </div>
     </div>
   );

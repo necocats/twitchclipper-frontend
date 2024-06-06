@@ -1,12 +1,27 @@
 /* Sidebar.css */
+body {
+  overflow-x: hidden;
+}
+
 .sidebar {
-  position: fixed;
-  top: 10%;
-  left: 0;
-  width: 25%; /* サイドバーの幅 */
-  height: 100%; /* 画面の高さに合わせる */
-  background-color: #f3e5f6; /* 背景色 */
-  overflow-y: auto; /* 縦スクロールを可能にする */
-  padding: 10px; /* パディング */
-  box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* サイドバーの影 */
+  /* width: 10%; */
+  width: 250px;
+  height: 100vh;
+}
+
+.sidebar .nav-top {
+  padding: 15px 20px;
+  font-weight: bold;
+  font-size: larger;
+  border-bottom: 1px solid #ffffff;
+}
+
+.sidebar .nav-link {
+  padding: 15px 20px;
+  border-bottom: 1px solid #7c7c7c;
+
+}
+
+.sidebar .nav-link:hover {
+  background-color: #444;
 }
