@@ -28,7 +28,9 @@ const Cliplist: React.FC<CliplistProps> = ({ clips, onClick }) => {
               onClick={onClick}
             />
           ))}
-          <ClipCard title={"新規クリップ追加"} broadcaster_name={"tes"} thumbnail_url={addClipImage} onClick={onClick}/>
+          <div className="nav-link text-white" data-bs-toggle="modal" data-bs-target="#addClipModal">
+            <ClipCard title={"新規クリップ追加"} broadcaster_name={"tes"} thumbnail_url={addClipImage} onClick={onClick}/>
+          </div>
         </div>
       </div>
     </>
