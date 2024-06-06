@@ -41,7 +41,7 @@ const Sidebar: React.FC = () => {
               </li>
             ))}
             <li className='nav-item'>
-              <div className="nav-link text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <div className="nav-link text-white" data-bs-toggle="modal" data-bs-target="#addPlaylistModal">
               + 新規プレイリスト作成
               </div>
             </li>

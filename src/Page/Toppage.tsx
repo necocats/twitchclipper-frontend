@@ -6,6 +6,7 @@ import { clips } from '../Data/DummyData';
 import '../css/Card.css';
 import '../css/Cliplist.css'
 import AddClipModal from '../components/AddClipModal';
+import AddPlaylistModal from '../components/AddPlaylistModal';
 
 const Toppage: React.FC = () => {
   return (
@@ -21,6 +22,7 @@ const Toppage: React.FC = () => {
         <Sidebar />
         <Cliplist clips={clips}/>
       </div>
+      <AddPlaylistModal />
       <AddClipModal />
     </div>
   );
