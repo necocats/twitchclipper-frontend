@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { FieldValue } from 'firebase/firestore';
-import PlaylistCard from './PlaylistCard';
 import axios from 'axios';
 import '../css/Sidebar.css'; // CSSファイルをインポート
 
@@ -30,14 +29,21 @@ const Sidebar: React.FC = () => {
   }, []);
 
   return (
-    <div className="sidebar">
-      <div className="d-flex flex-column">
-        {playlists.map((playlist) => (
-          <PlaylistCard key={playlist.id} name={playlist.playlist_name} description={playlist.description} onClick={() => {}} />
-        ))}
-        <PlaylistCard name={'新規プレイリスト作成'} description={''} onClick={() => {}}/>
-      </div>
-    </div>
+      <nav className="sidebar bg-dark">
+        <ul className="nav flex-column">
+            <li className="nav-item">
+              <div className="nav-top text-white">プレイリスト一覧</div>
+            </li>
+            {playlists.map((playlist) => (
+              <li className="nav-item">
+                <div className="nav-link text-white" onClick={() => {console.log('押すとプレイリストのidをCliplist.tsxにわたして、クリップリスト更新')}}>{playlist.playlist_name}</div>
+              </li>
+            ))}
+            <li className="nav-item">
+              <div className="nav-link text-white" onClick={() => {console.log('押すとプレイリスト作成のポップアップ表示')}}>+ 新規プレイリスト作成</div>
+            </li>
+        </ul>
+      </nav>
   );
 };
 

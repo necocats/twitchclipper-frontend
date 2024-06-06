@@ -17,8 +17,8 @@ interface CliplistProps {
 const Cliplist: React.FC<CliplistProps> = ({ clips, onClick }) => {
   return (
     <>
-      <div>
-        <div className="d-flex flex-row flex-wrap">
+      <div className='content flex-grow-1'>
+        <div className="d-flex flex-row flex-wrap clip-list">
           {clips.map((clip) => (
             <ClipCard  
               key={clip.id}
@@ -28,7 +28,7 @@ const Cliplist: React.FC<CliplistProps> = ({ clips, onClick }) => {
               onClick={onClick}
             />
           ))}
-          <ClipCard title={"新規クリップ追加"} broadcaster_name={""} thumbnail_url={addClipImage} onClick={onClick}/>
+          <ClipCard title={"新規クリップ追加"} broadcaster_name={"tes"} thumbnail_url={addClipImage} onClick={onClick}/>
         </div>
       </div>
     </>
