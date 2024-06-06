@@ -39,6 +39,9 @@ const Sidebar: React.FC = () => {
                 <div className="nav-link text-white" onClick={() => {console.log('押すとプレイリストのidをCliplist.tsxにわたして、クリップリスト更新')}}>{playlist.playlist_name}</div>
               </li>
             ))}
+            <li className="nav-item">
+              <div className="nav-link text-white" onClick={() => {console.log('押すとプレイリスト作成のポップアップ表示')}}>+ 新規プレイリスト作成</div>
+            </li>
         </ul>
       </nav>
   );
