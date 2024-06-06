@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Cliplist from '../components/Cliplist';
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
-import { clips } from '../Data/DummyData';
 import '../css/Card.css';
 import '../css/Cliplist.css'
 import AddClipModal from '../components/AddClipModal';
 
 const Toppage: React.FC = () => {
+  const [currentPlaylistId, setCurrentPlaylistId] = useState<string>("");
+  const handlePlaylistIdChange = (playlistId: string) => {
+    setCurrentPlaylistId(playlistId);
+  }
   return (
     <div>
       <header>
@@ -18,8 +21,8 @@ const Toppage: React.FC = () => {
         />
       </header>
       <div className='d-flex'>
-        <Sidebar />
-        <Cliplist clips={clips}/>
+        <Sidebar handlePlaylistIdChange={handlePlaylistIdChange}/>
+        <Cliplist currentPlaylistId={currentPlaylistId}/>
       </div>
       <AddClipModal />
     </div>

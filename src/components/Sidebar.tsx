@@ -12,7 +12,11 @@ interface Playlist {
   updated_at: FieldValue;
 }
 
-const Sidebar: React.FC = () => {
+interface handleProps {
+  handlePlaylistIdChange: (playlistId: string) => void;
+}
+
+const Sidebar: React.FC<handleProps> = ({handlePlaylistIdChange}) => {
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   useEffect(() => {
     const fetchPlaylists = async () => {
@@ -28,6 +32,10 @@ const Sidebar: React.FC = () => {
     fetchPlaylists();
   }, []);
 
+  const handleCurrentPlaylistIdChange = (playlistName: string) => {
+    handlePlaylistIdChange(playlistName);
+  }
+
   return (
     <>
       <nav className="sidebar bg-dark">
@@ -37,7 +45,7 @@ const Sidebar: React.FC = () => {
             </li>
             {playlists.map((playlist) => (
               <li className="nav-item" key={playlist.id}>
-                <div className="nav-link text-white" onClick={() => {console.log('押すとプレイリストのidをCliplist.tsxにわたして、クリップリスト更新')}}>{playlist.playlist_name}</div>
+                <div className="nav-link text-white" onClick={() => {handleCurrentPlaylistIdChange(playlist.id)}}>{playlist.playlist_name}</div>
               </li>
             ))}
             <li className='nav-item'>
