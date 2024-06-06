@@ -12,17 +12,18 @@ interface Playlist {
   updated_at: FieldValue;
 }
 
-interface handleProps {
+interface SidebarProps {
+  userId: string;
   handlePlaylistIdChange: (playlistId: string) => void;
 }
 
-const Sidebar: React.FC<handleProps> = ({handlePlaylistIdChange}) => {
+const Sidebar: React.FC<SidebarProps> = ({userId, handlePlaylistIdChange}) => {
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   useEffect(() => {
     const fetchPlaylists = async () => {
       try {
-        const userId: string = '1'; // GoogleのユーザーIDから取ってくる
-        const response = await axios.get("http://localhost:8080/api/playlists?userId=" + userId);
+        const uId: string = userId; // GoogleのユーザーIDから取ってくる
+        const response = await axios.get("http://localhost:8080/api/playlists?userId=" + uId);
         setPlaylists(response.data);
         
       } catch (error) {
@@ -30,7 +31,7 @@ const Sidebar: React.FC<handleProps> = ({handlePlaylistIdChange}) => {
       }
     }
     fetchPlaylists();
-  }, []);
+  }, [userId]);
 
   const handleCurrentPlaylistIdChange = (playlistName: string) => {
     handlePlaylistIdChange(playlistName);
