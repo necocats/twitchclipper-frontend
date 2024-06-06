@@ -57,9 +57,16 @@ const Cliplist: React.FC<CliplistProps> = ({ currentPlaylistId }) => {
               />
             ))
           }
-          <div className="nav-link text-white" data-bs-toggle="modal" data-bs-target="#addClipModal">
-            <ClipCard title={"新規クリップ追加"} broadcaster_name={"tes"} thumbnail_url={addClipImage}/>
-          </div>
+          {
+            currentPlaylistId ? (
+              <div className="nav-link text-white" data-bs-toggle="modal" data-bs-target="#addClipModal">
+                <ClipCard title={"新規クリップ追加"} broadcaster_name={"tes"} thumbnail_url={addClipImage}/>
+              </div>
+            ) : (
+              <h2>左のプレイリストを選択してください</h2>
+            )
+          }
+
         </div>
       </div>
     </>
