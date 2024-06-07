@@ -7,6 +7,7 @@ interface AddClipModalProps {
 }
 
 const AddClipModal: React.FC<AddClipModalProps> = ({ userId, playlistId }) => {
+  const baseApiUrl = import.meta.env.VITE_BACKEND_BASE_API_URL;
   const [clipId, setClipId] = useState('');
   const [clipUrl, setClipUrl] = useState('');
 
@@ -14,7 +15,7 @@ const AddClipModal: React.FC<AddClipModalProps> = ({ userId, playlistId }) => {
     // データベースにクリップ追加
     if(clipUrl){
       try {
-        const response = await axios.post('http://localhost:8080/api/clips',{
+        const response = await axios.post(baseApiUrl + 'clips',{
             userId,
             clipUrl
         });
@@ -25,7 +26,7 @@ const AddClipModal: React.FC<AddClipModalProps> = ({ userId, playlistId }) => {
         // プレイリストにクリップ追加
         if(playlistId){
           try {
-            await axios.post('http://localhost:8080/api/playlistclips', {
+            await axios.post(baseApiUrl + 'playlistclips', {
               playlistId,
               clipId
             })

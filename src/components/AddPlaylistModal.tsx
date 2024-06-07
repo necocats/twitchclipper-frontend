@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { auth } from '../ts/firebase';
 
 const AddPlaylistModal: React.FC = () => {
+  const baseApiUrl = import.meta.env.VITE_BACKEND_BASE_API_URL;
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [userId, setUserId] = useState('');
@@ -26,7 +27,7 @@ const AddPlaylistModal: React.FC = () => {
     
 
     try {
-      const response = await axios.post('http://localhost:8080/api/playlists', playlistData, {
+      const response = await axios.post(baseApiUrl + 'playlists', playlistData, {
         headers: {
           'Content-Type': 'application/json', 
         },
