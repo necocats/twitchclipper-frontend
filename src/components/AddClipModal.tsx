@@ -20,23 +20,21 @@ const AddClipModal: React.FC<AddClipModalProps> = ({ userId, playlistId }) => {
             clipUrl
         });
         setClipId(response.data['clip_id']);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        // プレイリストにクリップ追加
-        if(playlistId){
+        if (playlistId) {
           try {
             await axios.post(baseApiUrl + 'playlistclips', {
               playlistId,
-              clipId
-            })
+              clipId: response.data['clip_id'] 
+            });
+            window.location.reload();
           } catch (error) {
             console.error(error);
           }
         }
+      } catch (error) {
+        console.error(error);
       }
     }
-
   };
 
   return (
