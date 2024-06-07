@@ -18,12 +18,13 @@ interface SidebarProps {
 }
 
 const Sidebar: React.FC<SidebarProps> = ({userId, handlePlaylistIdChange}) => {
+  const baseApiUrl = import.meta.env.VITE_BACKEND_BASE_API_URL;
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   useEffect(() => {
     const fetchPlaylists = async () => {
       try {
         const uId: string = userId; // GoogleのユーザーIDから取ってくる
-        const response = await axios.get("http://localhost:8080/api/playlists?userId=" + uId);
+        const response = await axios.get(baseApiUrl + "playlists?userId=" + uId);
         setPlaylists(response.data);
         
       } catch (error) {
@@ -31,7 +32,7 @@ const Sidebar: React.FC<SidebarProps> = ({userId, handlePlaylistIdChange}) => {
       }
     }
     fetchPlaylists();
-  }, [userId]);
+  }, [baseApiUrl, userId]);
 
   const handleCurrentPlaylistIdChange = (playlistName: string) => {
     handlePlaylistIdChange(playlistName);

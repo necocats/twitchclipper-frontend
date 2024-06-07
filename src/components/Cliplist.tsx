@@ -26,13 +26,14 @@ interface CliplistProps {
 // }
 
 const Cliplist: React.FC<CliplistProps> = ({ currentPlaylistId }) => {
+  const baseApiUrl = import.meta.env.VITE_BACKEND_BASE_API_URL;
   const [clips, setClips] = useState<Clip[]>([]);
   useEffect(() => {
     const fetchPlaylists = async () => {
       if(currentPlaylistId != ""){
         try {
           const playlistId = currentPlaylistId;
-          const response = await axios.get("http://localhost:8080/api/clips?playlistId=" + playlistId);
+          const response = await axios.get(baseApiUrl + "clips?playlistId=" + playlistId);
           setClips(response.data);
           
         } catch (error) {
@@ -41,7 +42,7 @@ const Cliplist: React.FC<CliplistProps> = ({ currentPlaylistId }) => {
       }
     }
     fetchPlaylists();
-  }, [currentPlaylistId]);
+  }, [baseApiUrl, currentPlaylistId]);
 
   return (
     <>
