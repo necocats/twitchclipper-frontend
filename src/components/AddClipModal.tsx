@@ -8,8 +8,13 @@ interface AddClipModalProps {
 
 const AddClipModal: React.FC<AddClipModalProps> = ({ userId, playlistId }) => {
   const baseApiUrl = import.meta.env.VITE_BACKEND_BASE_API_URL;
-  const [clipId, setClipId] = useState('');
+  const [, setClipId] = useState('');
   const [clipUrl, setClipUrl] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleErrorMessage = (message: React.SetStateAction<string>) => {
+    setErrorMessage(message);
+  };  
 
   const handleSubmit = async () => {
     // データベースにクリップ追加
@@ -29,10 +34,12 @@ const AddClipModal: React.FC<AddClipModalProps> = ({ userId, playlistId }) => {
             window.location.reload();
           } catch (error) {
             console.error(error);
+            handleErrorMessage('クリップの追加に失敗しました');
           }
         }
       } catch (error) {
         console.error(error);
+        handleErrorMessage('クリップを追加できませんでした');
       }
     }
   };
@@ -59,6 +66,11 @@ const AddClipModal: React.FC<AddClipModalProps> = ({ userId, playlistId }) => {
               />
             </div>
           </div>
+          {errorMessage && (
+            <div className="alert alert-danger" role="alert">
+              {errorMessage}              
+            </div>
+          )}
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>

@@ -8,6 +8,11 @@ const AddPlaylistModal: React.FC = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [userId, setUserId] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleErrorMessage = (message: React.SetStateAction<string>) => {
+    setErrorMessage(message);
+  };  
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -25,7 +30,6 @@ const AddPlaylistModal: React.FC = () => {
       description,
     };
     
-
     try {
       const response = await axios.post(baseApiUrl + 'playlists', playlistData, {
         headers: {
@@ -36,16 +40,17 @@ const AddPlaylistModal: React.FC = () => {
       if (response.status === 201) {
         const data = response.data;
         console.log('correct:', data);
-
         // フォームフィールドをリセット
         setTitle('');
         setDescription('');
         window.location.reload();
       } else {
         console.error('プレイリストの作成に失敗しました');
+        handleErrorMessage('プレイリストの作成に失敗しました');
       }
     } catch (error) {
       console.error('error:', error);
+      handleErrorMessage('プレイリストを作成できませんでした');
     }
   };
   return (
@@ -83,7 +88,12 @@ const AddPlaylistModal: React.FC = () => {
                   />
               </div>
             </div>
-          </div>
+              {errorMessage && (
+                <div className="alert alert-danger" role="alert">
+                  {errorMessage}
+                </div>
+              )}
+            </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
