@@ -1,6 +1,43 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
 
-const AddClipModal: React.FC = () => {
+interface AddClipModalProps {
+  userId: string;
+  playlistId: string;
+}
+
+const AddClipModal: React.FC<AddClipModalProps> = ({ userId, playlistId }) => {
+  const [clipId, setClipId] = useState('');
+  const [clipUrl, setClipUrl] = useState('');
+
+  const handleSubmit = async () => {
+    // データベースにクリップ追加
+    if(clipUrl){
+      try {
+        const response = await axios.post('http://localhost:8080/api/clips',{
+            userId,
+            clipUrl
+        });
+        setClipId(response.data['clip_id']);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        // プレイリストにクリップ追加
+        if(playlistId){
+          try {
+            await axios.post('http://localhost:8080/api/playlistclips', {
+              playlistId,
+              clipId
+            })
+          } catch (error) {
+            console.error(error);
+          }
+        }
+      }
+    }
+
+  };
+
   return (
     <div className="modal fade" id="addClipModal" tabIndex={-1} aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div className="modal-dialog modal-dialog-centered">
@@ -12,12 +49,20 @@ const AddClipModal: React.FC = () => {
           <div className="modal-body">
             <div className="input-group mb-3">
               <span className="input-group-text" id="inputGroup-sizing-default">クリップURL</span>
-              <input type="text" className="form-control" placeholder='https://www.twitch.tv/user_name/clip/xxx-xxx' aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+              <input 
+                type="text" 
+                className="form-control" 
+                placeholder='https://www.twitch.tv/user_name/clip/xxx-xxx' 
+                aria-label="Sizing example input" 
+                aria-describedby="inputGroup-sizing-default"
+                value={clipUrl}
+                onChange={(e) => setClipUrl(e.target.value)}
+              />
             </div>
           </div>
           <div className="modal-footer">
             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" className="btn btn-primary">Submit</button>
+            <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
           </div>
         </div>
       </div>
