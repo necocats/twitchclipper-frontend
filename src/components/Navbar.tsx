@@ -4,9 +4,11 @@ interface NavbarProps {
     twitchClipperIconSrc: string;
     profileIconSrc: string;
     isLogin: boolean;
+    handleSignIn: () => void;
+    handleSignOut: () => void;
 }
 
-function Navbar({ twitchClipperIconSrc, profileIconSrc, isLogin }: NavbarProps){
+function Navbar({ twitchClipperIconSrc, profileIconSrc, isLogin, handleSignIn, handleSignOut }: NavbarProps){
     return (
         <>
             <nav className="navbar">
@@ -18,12 +20,12 @@ function Navbar({ twitchClipperIconSrc, profileIconSrc, isLogin }: NavbarProps){
                     <div className="d-flex justify-content-center align-items-center">
                         <form>
                             {isLogin ?
-                            <button className="btn btn-outline-success me-2" type="button">ログアウト</button>
+                            <button className="btn btn-outline-success me-2" type="button" onClick={() => {handleSignOut()}}>ログアウト</button>
                             : 
-                            <button className="btn btn-outline-success me-2" type="button">ログイン</button>
+                            <button className="btn btn-outline-success me-2" type="button" onClick={() => {handleSignIn()}}>ログイン</button>
                             }
                         </form>
-                        <img src={profileIconSrc} alt="" width="30" height="24"/>
+                        <img src={profileIconSrc} className='user-icon' alt="" width="30" height="30"/>
                     </div>
                 </div>
             </nav>

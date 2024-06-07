@@ -1,3 +1,7 @@
 .navbar {
     background-color: black;
 }
+
+.user-icon {
+    border-radius: 100%;
+}
