@@ -5,3 +5,22 @@
 .user-icon {
     border-radius: 100%;
 }
+
+.icon {
+font-size: 50px;
+transition: transform 0.5s;
+}
+
+.icon.rotating {
+animation: rotation 1s infinite linear;
+}
+
+@keyframes rotation {
+from {
+    transform: rotate(0deg);
+}
+to {
+    transform: rotate(360deg);
+}
+}
+  

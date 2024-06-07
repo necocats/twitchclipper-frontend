@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import { useKonamiCode } from '../ts/konami';
 import '../css/Navbar.css'
 
 interface NavbarProps {
@@ -9,12 +11,18 @@ interface NavbarProps {
 }
 
 function Navbar({ twitchClipperIconSrc, profileIconSrc, isLogin, handleSignIn, handleSignOut }: NavbarProps){
+    const [isRotating, setIsRotating] = useState(false);
+  
+    useKonamiCode(() => {
+      setIsRotating(true);
+      setTimeout(() => setIsRotating(false), 1000); // 3秒後に回転を停止
+    });
     return (
         <>
             <nav className="navbar">
                 <div className="container-fluid">
                     <a className="navbar-brand text-white" href="#">
-                        <img src={twitchClipperIconSrc} alt="" width="30" height="24" className="d-inline-block align-text-top"/>
+                        <img src={twitchClipperIconSrc} alt="" width="30" height="24" className={`icon ${isRotating ? 'rotating' : ''} d-inline-block align-text-top`}/>
                         Twitch Clipper
                     </a>
                     <div className="d-flex justify-content-center align-items-center">
