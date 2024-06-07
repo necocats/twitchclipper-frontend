@@ -36,9 +36,11 @@ const AddPlaylistModal: React.FC = () => {
       if (response.status === 201) {
         const data = response.data;
         console.log('correct:', data);
+
         // フォームフィールドをリセット
         setTitle('');
         setDescription('');
+        window.location.reload();
       } else {
         console.error('プレイリストの作成に失敗しました');
       }
