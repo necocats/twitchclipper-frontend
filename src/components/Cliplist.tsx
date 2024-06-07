@@ -44,17 +44,23 @@ const Cliplist: React.FC<CliplistProps> = ({ currentPlaylistId }) => {
     fetchPlaylists();
   }, [baseApiUrl, currentPlaylistId]);
 
+  const handleCardClick = (clipUrl: string) => {
+    window.open(clipUrl, '_blank');
+  };
+
   return (
     <>
       <div className='content flex-grow-1'>
         <div className="d-flex flex-row flex-wrap clip-list">
           {
             clips.map((clip) => (
+              //クリップのカード
               <ClipCard
                 key={clip.clip_id}
                 title={clip.title} 
                 broadcaster_name={clip.broadcaster_name}
                 thumbnail_url={clip.thumbnail_url}
+                onClick={() => handleCardClick(clip.clip_url)}
               />
             ))
           }

@@ -1,12 +1,19 @@
 .card {
-  width: 100%; 
+  width: 100%;
   max-width: 300px; /* 最大幅 */
   height: 300px; /* 高さ */
   overflow: hidden; /* コンテンツがカードを超えないように */
+  transition: transform 0.2s, box-shadow 0.2s; /* ホバーアニメーションの追加 */
+}
+
+.card:hover {
+  transform: scale(1.05); /* ホバー時にカードを拡大 */
+  box-shadow: 0 4px 8px rgba(232, 50, 147, 0.2); 
 }
 
 .card-img-top {
   width: 100%; /* 幅をカードに合わせる */
   height: 100%; /* 高さ */
   object-fit: cover; /* アスペクト比を維持しつつ、カードに収める */
+  transition: transform 0.2s; /* ホバーアニメーションの追加 */
 }
