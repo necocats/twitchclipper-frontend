@@ -78,7 +78,7 @@ const Toppage: React.FC = () => {
         <Cliplist userId={userId} currentPlaylistId={currentPlaylistId} currentPlaylistName={currentPlaylistName}/>
       </div>
       <AddPlaylistModal handlePlaylistChange={handlePlaylistChange}/>
-      <AddClipModal userId={userId} currentPlaylistId={currentPlaylistId}/>
+      <AddClipModal userId={userId} currentPlaylistId={currentPlaylistId} currentPlaylistName={currentPlaylistName} handlePlaylistChange={handlePlaylistChange}/>
     </div>
   );
 };

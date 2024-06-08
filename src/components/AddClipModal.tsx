@@ -4,9 +4,11 @@ import React, { useState } from 'react'
 interface AddClipModalProps {
   userId: string;
   currentPlaylistId: string;
+  currentPlaylistName: string;
+  handlePlaylistChange: (playlistId: string, playlistName: string) => void;
 }
 
-const AddClipModal: React.FC<AddClipModalProps> = ({ userId, currentPlaylistId }) => {
+const AddClipModal: React.FC<AddClipModalProps> = ({ userId, currentPlaylistId, currentPlaylistName, handlePlaylistChange }) => {
   const baseApiUrl = import.meta.env.VITE_BACKEND_BASE_API_URL;
   const [, setClipId] = useState('');
   const [clipUrl, setClipUrl] = useState('');
@@ -27,15 +29,20 @@ const AddClipModal: React.FC<AddClipModalProps> = ({ userId, currentPlaylistId }
         setClipId(response.data['clip_id']);
         if (currentPlaylistId) {
           try {
+            handlePlaylistChange("", currentPlaylistName);
             await axios.post(baseApiUrl + 'playlistclips', {
               playlistId: currentPlaylistId,
               clipId: response.data['clip_id'] 
             });
-            // window.location.reload();
-            const modalCloseButton = document.getElementById('btn-close');
+            // モーダルを閉じる
+            const modalCloseButton = document.getElementById('add-clip-btn-close');
             if(modalCloseButton){
               modalCloseButton.click();
             }
+            // クリップ一覧更新
+            handlePlaylistChange(currentPlaylistId, currentPlaylistName);
+            setClipUrl('');
+
           } catch (error) {
             console.error(error);
             handleErrorMessage('クリップの追加に失敗しました');
@@ -54,7 +61,7 @@ const AddClipModal: React.FC<AddClipModalProps> = ({ userId, currentPlaylistId }
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">新規クリップ追加</h5>
-            <button type="button" id='btn-close' className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" id='add-clip-btn-close' className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body">
             <div className="input-group mb-3">
