@@ -74,7 +74,7 @@ const Toppage: React.FC = () => {
         />
       </header>
       <div className='d-flex'>
-        <Sidebar userId={userId} handlePlaylistIdChange={handlePlaylistIdChange} isLogin={isLogin}/>
+        <Sidebar userId={userId} handlePlaylistChange={handlePlaylistChange} isLogin={isLogin}/>
         <Cliplist userId={userId} currentPlaylistId={currentPlaylistId} currentPlaylistName={currentPlaylistName}/>
       </div>
       <AddPlaylistModal/>

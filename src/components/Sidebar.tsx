@@ -18,7 +18,7 @@ interface SidebarProps {
   handlePlaylistChange: (playlistId: string, playlistName: string) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({userId, isLogin, handlePlaylistIdChange}) => {
+const Sidebar: React.FC<SidebarProps> = ({userId, isLogin, handlePlaylistChange}) => {
   const baseApiUrl = import.meta.env.VITE_BACKEND_BASE_API_URL;
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   useEffect(() => {
