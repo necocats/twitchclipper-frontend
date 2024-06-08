@@ -48,7 +48,7 @@ const AddPlaylistModal: React.FC<AddPlaylistModalProps> = ({handlePlaylistChange
         setTitle('');
         setDescription('');
         // モーダル閉じる
-        const modalCloseButton = document.getElementById('btn-close');
+        const modalCloseButton = document.getElementById('add-playlist-btn-close');
         if(modalCloseButton){
           modalCloseButton.click();
         }
@@ -70,7 +70,7 @@ const AddPlaylistModal: React.FC<AddPlaylistModalProps> = ({handlePlaylistChange
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">新規プレイリスト作成</h5>
-            <button type="button" id='btn-close' className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" id='add-playlist-btn-close' className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body">
             <div className="d-flex flex-column">
@@ -83,7 +83,7 @@ const AddPlaylistModal: React.FC<AddPlaylistModalProps> = ({handlePlaylistChange
                   aria-label="Sizing example input" 
                   aria-describedby="inputGroup-sizing-default"
                   value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  onChange={(e) => {setTitle(e.target.value); e.target.value = "";}}
                   />
               </div>
               <div className="input-group mb-3">
