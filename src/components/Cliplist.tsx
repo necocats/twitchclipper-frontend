@@ -1,4 +1,4 @@
-import { FieldValue } from 'firebase/firestore';
+import { Timestamp } from 'firebase/firestore';
 import '../css/Cliplist.css'
 import addClipImage from '/add_clip.png';
 import ClipCard from "./ClipCard";
@@ -12,8 +12,8 @@ interface Clip {
   broadcaster_name: string;
   clip_url: string;
   thumbnail_url: string;
-  created_at: FieldValue;
-  updated_at: FieldValue;
+  created_at: Timestamp;
+  updated_at: Timestamp;
 }
 
 interface CliplistProps {
@@ -25,19 +25,22 @@ interface CliplistProps {
 const Cliplist: React.FC<CliplistProps> = ({ userId, currentPlaylistId, currentPlaylistName }) => {
   const baseApiUrl = import.meta.env.VITE_BACKEND_BASE_API_URL;
   const [clips, setClips] = useState<Clip[]>([]);
+
   useEffect(() => {
     const fetchPlaylists = async () => {
-      if(currentPlaylistId != ""){
+      if (currentPlaylistId !== "") {
         try {
           const playlistId = currentPlaylistId;
           const response = await axios.get(baseApiUrl + "clips?playlistId=" + playlistId);
-          setClips(response.data);
-          
+          const sortedClips = response.data.sort((a: Clip, b: Clip) => {
+            return a.created_at.seconds - b.created_at.seconds; //時間順にソート
+          });
+          setClips(sortedClips);
         } catch (error) {
           console.error('fetchPlaylists Error: ', error);
         }
       }
-    }
+    };
     fetchPlaylists();
   }, [baseApiUrl, currentPlaylistId]);
 
@@ -75,7 +78,6 @@ const Cliplist: React.FC<CliplistProps> = ({ userId, currentPlaylistId, currentP
               )
             )
           }
-
         </div>
       </div>
     </>
