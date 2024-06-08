@@ -1,7 +1,7 @@
 .card {
   width: 100%;
   max-width: 300px; /* 最大幅 */
-  height: 300px; /* 高さ */
+  max-height: 300px; /* 高さ */
   overflow: hidden; /* コンテンツがカードを超えないように */
   transition: transform 0.2s, box-shadow 0.2s; /* ホバーアニメーションの追加 */
 }
@@ -11,6 +11,10 @@
   box-shadow: 0 4px 8px rgba(232, 50, 147, 0.2); 
 }
 
+.my-card-body {
+  padding: 0.5rem;
+}
+
 .card-img-top {
   width: 100%; /* 幅をカードに合わせる */
   height: 100%; /* 高さ */
@@ -18,7 +22,7 @@
   transition: transform 0.2s; /* ホバーアニメーションの追加 */
 }
 
-.card-title {
+.my-card-title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -39,4 +43,6 @@
 
 .card .trash-icon:hover {
   color: red;
+  font-size: large;
+  margin-bottom: 0;
 }

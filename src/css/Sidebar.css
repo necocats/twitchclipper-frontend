@@ -6,7 +6,9 @@ body {
 .sidebar {
   /* width: 10%; */
   min-width: 200px;
-  height: calc(100vh - 56px);
+  /* height: calc(100vh - 56px); */
+  min-height: calc(100vh - 56px);
+  height: 100%;
 }
 
 .sidebar .nav-top {

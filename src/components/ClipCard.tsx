@@ -20,8 +20,8 @@ const ClipCard: React.FC<ClipCardProps> = ({
   return (
     <div className="card" onClick={onClick}>
       <img src={thumbnail_url} className="card-img-top" alt="" />
-      <div className="card-body">
-        <h5 className="card-title">{title}</h5>
+      <div className="my-card-body">
+        <h5 className="my-card-title">{title}</h5>
         <p className="card-text">{broadcaster_name}</p>
       </div>
       {showTrashIcon && (
