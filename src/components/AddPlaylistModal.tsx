@@ -3,7 +3,11 @@ import { onAuthStateChanged } from 'firebase/auth';
 import React, { useEffect, useState } from 'react'
 import { auth } from '../ts/firebase';
 
-const AddPlaylistModal: React.FC = () => {
+interface AddPlaylistModalProps {
+  handlePlaylistChange: (playlistId: string, playlistName: string) => void;
+}
+
+const AddPlaylistModal: React.FC<AddPlaylistModalProps> = ({handlePlaylistChange}) => {
   const baseApiUrl = import.meta.env.VITE_BACKEND_BASE_API_URL;
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -43,7 +47,14 @@ const AddPlaylistModal: React.FC = () => {
         // フォームフィールドをリセット
         setTitle('');
         setDescription('');
-        window.location.reload();
+        // モーダル閉じる
+        const modalCloseButton = document.getElementById('btn-close');
+        if(modalCloseButton){
+          modalCloseButton.click();
+        }
+        // 作成したプレイリストのクリップ一覧表示
+        handlePlaylistChange(data["id"], data["playlist_name"]);
+
       } else {
         console.error('プレイリストの作成に失敗しました');
         handleErrorMessage('プレイリストの作成に失敗しました');
@@ -59,7 +70,7 @@ const AddPlaylistModal: React.FC = () => {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">新規プレイリスト作成</h5>
-            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" id='btn-close' className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body">
             <div className="d-flex flex-column">

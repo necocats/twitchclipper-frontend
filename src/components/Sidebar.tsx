@@ -1,5 +1,5 @@
+import { Timestamp } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
-import { FieldValue } from 'firebase/firestore';
 import axios from 'axios';
 import '../css/Sidebar.css'; // CSSファイルをインポート
 
@@ -8,17 +8,18 @@ interface Playlist {
   user_id: string;
   playlist_name: string;
   description: string;
-  created_at: FieldValue;
-  updated_at: FieldValue;
+  created_at: Timestamp;
+  updated_at: Timestamp;
 }
 
 interface SidebarProps {
   userId: string;
+  currentPlaylistId: string;
   isLogin: boolean;
   handlePlaylistChange: (playlistId: string, playlistName: string) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({userId, isLogin, handlePlaylistChange}) => {
+const Sidebar: React.FC<SidebarProps> = ({userId, currentPlaylistId, isLogin, handlePlaylistChange}) => {
   const baseApiUrl = import.meta.env.VITE_BACKEND_BASE_API_URL;
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   useEffect(() => {
@@ -26,14 +27,16 @@ const Sidebar: React.FC<SidebarProps> = ({userId, isLogin, handlePlaylistChange}
       try {
         const uId: string = userId; // GoogleのユーザーIDから取ってくる
         const response = await axios.get(baseApiUrl + "playlists?userId=" + uId);
-        setPlaylists(response.data);
-        
+        const sortedPlaylists = response.data.sort((a: Playlist, b: Playlist) => {
+          return a.created_at.seconds - b.created_at.seconds; // 時間順にソート
+        });
+        setPlaylists(sortedPlaylists);
       } catch (error) {
         console.error('fetchPlaylists Error: ', error);
       }
     }
     fetchPlaylists();
-  }, [baseApiUrl, userId]);
+  }, [baseApiUrl, userId, currentPlaylistId]);
 
   const handleCurrentPlaylistChange = (playlistId: string, playlistName: string) => {
     handlePlaylistChange(playlistId, playlistName);

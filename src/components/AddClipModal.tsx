@@ -3,10 +3,10 @@ import React, { useState } from 'react'
 
 interface AddClipModalProps {
   userId: string;
-  playlistId: string;
+  currentPlaylistId: string;
 }
 
-const AddClipModal: React.FC<AddClipModalProps> = ({ userId, playlistId }) => {
+const AddClipModal: React.FC<AddClipModalProps> = ({ userId, currentPlaylistId }) => {
   const baseApiUrl = import.meta.env.VITE_BACKEND_BASE_API_URL;
   const [, setClipId] = useState('');
   const [clipUrl, setClipUrl] = useState('');
@@ -25,13 +25,17 @@ const AddClipModal: React.FC<AddClipModalProps> = ({ userId, playlistId }) => {
             clipUrl
         });
         setClipId(response.data['clip_id']);
-        if (playlistId) {
+        if (currentPlaylistId) {
           try {
             await axios.post(baseApiUrl + 'playlistclips', {
-              playlistId,
+              playlistId: currentPlaylistId,
               clipId: response.data['clip_id'] 
             });
-            window.location.reload();
+            // window.location.reload();
+            const modalCloseButton = document.getElementById('btn-close');
+            if(modalCloseButton){
+              modalCloseButton.click();
+            }
           } catch (error) {
             console.error(error);
             handleErrorMessage('クリップの追加に失敗しました');
@@ -50,7 +54,7 @@ const AddClipModal: React.FC<AddClipModalProps> = ({ userId, playlistId }) => {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title" id="exampleModalLabel">新規クリップ追加</h5>
-            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" id='btn-close' className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div className="modal-body">
             <div className="input-group mb-3">
