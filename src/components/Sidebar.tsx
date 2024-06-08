@@ -14,10 +14,10 @@ interface Playlist {
 
 interface SidebarProps {
   userId: string;
-  handlePlaylistIdChange: (playlistId: string) => void;
+  handlePlaylistChange: (playlistId: string, playlistName: string) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({userId, handlePlaylistIdChange}) => {
+const Sidebar: React.FC<SidebarProps> = ({userId, handlePlaylistChange}) => {
   const baseApiUrl = import.meta.env.VITE_BACKEND_BASE_API_URL;
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   useEffect(() => {
@@ -34,8 +34,8 @@ const Sidebar: React.FC<SidebarProps> = ({userId, handlePlaylistIdChange}) => {
     fetchPlaylists();
   }, [baseApiUrl, userId]);
 
-  const handleCurrentPlaylistIdChange = (playlistName: string) => {
-    handlePlaylistIdChange(playlistName);
+  const handleCurrentPlaylistChange = (playlistId: string, playlistName: string) => {
+    handlePlaylistChange(playlistId, playlistName);
   }
 
   return (
@@ -47,7 +47,7 @@ const Sidebar: React.FC<SidebarProps> = ({userId, handlePlaylistIdChange}) => {
             </li>
             {playlists.map((playlist) => (
               <li className="nav-item" key={playlist.id}>
-                <div className="nav-link text-white" onClick={() => {handleCurrentPlaylistIdChange(playlist.id)}}>{playlist.playlist_name}</div>
+                <div className="nav-link text-white" onClick={() => {handleCurrentPlaylistChange(playlist.id, playlist.playlist_name)}}>{playlist.playlist_name}</div>
               </li>
             ))}
             <li className='nav-item'>
