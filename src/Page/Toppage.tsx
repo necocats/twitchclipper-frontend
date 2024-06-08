@@ -8,17 +8,19 @@ import AddClipModal from '../components/AddClipModal';
 import AddPlaylistModal from '../components/AddPlaylistModal';
 import '../css/Cliplist.css'
 import '../css/Card.css';
-import viteSvg from '/vite.svg'
+import icon from '/twitch_clipper_icon.png'
 
 const Toppage: React.FC = () => {
   const [userId, setUserId] = useState<string>("");
-  const [userIconSrc, setUserIconSrc] = useState<string>(viteSvg);
+  const [userIconSrc, setUserIconSrc] = useState<string>(icon);
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const [currentPlaylistId, setCurrentPlaylistId] = useState<string>("");
+  const [currentPlaylistName, setCurrentPlaylistName] = useState<string>("");
 
   // 選択しているプレイリストの取得
-  const handlePlaylistIdChange = (playlistId: string) => {
+  const handlePlaylistChange = (playlistId: string, playlistName: string) => {
     setCurrentPlaylistId(playlistId);
+    setCurrentPlaylistName(playlistName);
   }
 
   // ログイン用の関数
@@ -27,6 +29,7 @@ const Toppage: React.FC = () => {
       .then((result) => {
         setUserId(result.user.uid);
         setIsLogin(true);
+        window.location.reload();
       }).catch((error) => {
         console.error(error)
       });
@@ -40,8 +43,9 @@ const Toppage: React.FC = () => {
       console.error(error);
     })
     setUserId("");
-    setUserIconSrc(viteSvg);
+    setUserIconSrc(icon);
     setIsLogin(false);
+    window.location.reload();
   }
 
   // ページ読み込み時にログインしているか確認
@@ -62,7 +66,7 @@ const Toppage: React.FC = () => {
     <div>
       <header>
         <Navbar
-          twitchClipperIconSrc="/vite.svg"
+          twitchClipperIconSrc={icon}
           profileIconSrc={userIconSrc}
           isLogin={isLogin}
           handleSignIn={signInWithGoogle}
@@ -71,7 +75,7 @@ const Toppage: React.FC = () => {
       </header>
       <div className='d-flex'>
         <Sidebar userId={userId} handlePlaylistIdChange={handlePlaylistIdChange} isLogin={isLogin}/>
-        <Cliplist currentPlaylistId={currentPlaylistId}/>
+        <Cliplist userId={userId} currentPlaylistId={currentPlaylistId} currentPlaylistName={currentPlaylistName}/>
       </div>
       <AddPlaylistModal/>
       <AddClipModal userId={userId} playlistId={currentPlaylistId}/>

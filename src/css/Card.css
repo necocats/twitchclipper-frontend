@@ -17,3 +17,9 @@
   object-fit: cover; /* アスペクト比を維持しつつ、カードに収める */
   transition: transform 0.2s; /* ホバーアニメーションの追加 */
 }
+
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

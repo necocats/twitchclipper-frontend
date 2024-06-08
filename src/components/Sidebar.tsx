@@ -15,7 +15,7 @@ interface Playlist {
 interface SidebarProps {
   userId: string;
   isLogin: boolean;
-  handlePlaylistIdChange: (playlistId: string) => void;
+  handlePlaylistChange: (playlistId: string, playlistName: string) => void;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({userId, isLogin, handlePlaylistIdChange}) => {
@@ -35,8 +35,8 @@ const Sidebar: React.FC<SidebarProps> = ({userId, isLogin, handlePlaylistIdChang
     fetchPlaylists();
   }, [baseApiUrl, userId]);
 
-  const handleCurrentPlaylistIdChange = (playlistName: string) => {
-    handlePlaylistIdChange(playlistName);
+  const handleCurrentPlaylistChange = (playlistId: string, playlistName: string) => {
+    handlePlaylistChange(playlistId, playlistName);
   }
 
   const alart = () => {
@@ -54,7 +54,7 @@ const Sidebar: React.FC<SidebarProps> = ({userId, isLogin, handlePlaylistIdChang
             </li>
             {playlists.map((playlist) => (
               <li className="nav-item" key={playlist.id}>
-                <div className="nav-link text-white" onClick={() => {handleCurrentPlaylistIdChange(playlist.id)}}>{playlist.playlist_name}</div>
+                <div className="nav-link text-white" onClick={() => {handleCurrentPlaylistChange(playlist.id, playlist.playlist_name)}}>{playlist.playlist_name}</div>
               </li>
             ))}
             <li className='nav-item'>
