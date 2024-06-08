@@ -48,6 +48,10 @@ const Cliplist: React.FC<CliplistProps> = ({ userId, currentPlaylistId, currentP
     window.open(clipUrl, '_blank');
   };
 
+  const handleTrashClick = () => {
+    //クリップ削除の処理
+  };
+
   return (
     <>
       <div className='content flex-grow-1'>
@@ -62,13 +66,20 @@ const Cliplist: React.FC<CliplistProps> = ({ userId, currentPlaylistId, currentP
                 broadcaster_name={clip.broadcaster_name}
                 thumbnail_url={clip.thumbnail_url}
                 onClick={() => handleCardClick(clip.clip_url)}
+                showTrashIcon={true}
+                onTrashClick={() => handleTrashClick()}
               />
             ))
           }
           {
             currentPlaylistId ? (
               <div className="nav-link text-white" data-bs-toggle="modal" data-bs-target="#addClipModal">
-                <ClipCard title={"新規クリップ追加"} broadcaster_name={"ここをクリック！"} thumbnail_url={addClipImage}/>
+                <ClipCard 
+                  title={"新規クリップ追加"} 
+                  broadcaster_name={"ここをクリックしてクリップを追加！"} 
+                  thumbnail_url={addClipImage}
+                  showTrashIcon={false}
+                  />
               </div>
             ) : (
               userId ? (

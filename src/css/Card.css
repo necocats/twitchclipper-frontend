@@ -26,6 +26,23 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.card .trash-icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: none;
+  cursor: pointer;
+  color: gray;
+}
+
+.card:hover .trash-icon {
+  display: block;
+}
+
+.card .trash-icon:hover {
+  color: red;
   font-size: large;
   margin-bottom: 0;
 }

@@ -42,7 +42,11 @@ const Sidebar: React.FC<SidebarProps> = ({userId, currentPlaylistId, isLogin, ha
     handlePlaylistChange(playlistId, playlistName);
   }
 
-  const alart = () => {
+  const handleTrashClick = () => {
+    // playlist削除の処理
+  };
+
+  const alertLogin = () => {
     if (!isLogin) {
       alert('ログインが必要です');
     }
@@ -52,24 +56,37 @@ const Sidebar: React.FC<SidebarProps> = ({userId, currentPlaylistId, isLogin, ha
     <>
       <nav className="sidebar bg-dark">
         <ul className="nav flex-column">
-            <li className="nav-item">
-              <div className="nav-top text-white">プレイリスト一覧</div>
+          <li className="nav-item">
+            <div className="nav-top text-white">プレイリスト一覧</div>
+          </li>
+          {playlists.map((playlist) => (
+            <li className="nav-item" key={playlist.id}>
+              <div
+                className="nav-link text-white"
+                onClick={() => { handleCurrentPlaylistChange(playlist.id, playlist.playlist_name) }}
+              >
+                {playlist.playlist_name}
+                <i
+                className="bi bi-trash trash-icon"
+                onClick={(e) => {
+                  e.stopPropagation(); // リンクのクリックイベントを発火させない
+                  handleTrashClick();
+                }}
+              ></i>
+              </div>
+              
             </li>
-            {playlists.map((playlist) => (
-              <li className="nav-item" key={playlist.id}>
-                <div className="nav-link text-white" onClick={() => {handleCurrentPlaylistChange(playlist.id, playlist.playlist_name)}}>{playlist.playlist_name}</div>
-              </li>
-            ))}
-            <li className='nav-item'>
-              {isLogin ?
-                <div className="nav-link text-white" data-bs-toggle="modal" data-bs-target="#addPlaylistModal">
+          ))}
+          <li className='nav-item'>
+            {isLogin ?
+              <div className="nav-link text-white" data-bs-toggle="modal" data-bs-target="#addPlaylistModal">
                 + 新規プレイリスト作成
-                </div>:
-                <div className="nav-link text-white" onClick={alart} >
+              </div> :
+              <div className="nav-link text-white" onClick={alertLogin} >
                 + 新規プレイリスト作成
-                </div>
-              }
-            </li>
+              </div>
+            }
+          </li>
         </ul>
       </nav>
     </>

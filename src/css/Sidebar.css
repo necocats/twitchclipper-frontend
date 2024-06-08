@@ -21,9 +21,26 @@ body {
 .sidebar .nav-link {
   padding: 15px 20px;
   border-bottom: 1px solid #7c7c7c;
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .sidebar .nav-link:hover {
   background-color: #444;
+}
+
+.nav-item .trash-icon {
+  display: none;
+  /* position: absolute; */
+  cursor: pointer;
+  color: rgb(177, 173, 173);
+}
+
+.nav-item:hover .trash-icon {
+  display: inline;
+}
+
+.nav-item .trash-icon:hover {
+  color: red;
 }
