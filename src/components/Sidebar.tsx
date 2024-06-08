@@ -14,10 +14,11 @@ interface Playlist {
 
 interface SidebarProps {
   userId: string;
+  isLogin: boolean;
   handlePlaylistIdChange: (playlistId: string) => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({userId, handlePlaylistIdChange}) => {
+const Sidebar: React.FC<SidebarProps> = ({userId, isLogin, handlePlaylistIdChange}) => {
   const baseApiUrl = import.meta.env.VITE_BACKEND_BASE_API_URL;
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   useEffect(() => {
@@ -38,6 +39,12 @@ const Sidebar: React.FC<SidebarProps> = ({userId, handlePlaylistIdChange}) => {
     handlePlaylistIdChange(playlistName);
   }
 
+  const alart = () => {
+    if (!isLogin) {
+      alert('ログインが必要です');
+    }
+  };
+
   return (
     <>
       <nav className="sidebar bg-dark">
@@ -51,9 +58,14 @@ const Sidebar: React.FC<SidebarProps> = ({userId, handlePlaylistIdChange}) => {
               </li>
             ))}
             <li className='nav-item'>
-              <div className="nav-link text-white" data-bs-toggle="modal" data-bs-target="#addPlaylistModal">
-              + 新規プレイリスト作成
-              </div>
+              {isLogin ?
+                <div className="nav-link text-white" data-bs-toggle="modal" data-bs-target="#addPlaylistModal">
+                + 新規プレイリスト作成
+                </div>:
+                <div className="nav-link text-white" onClick={alart} >
+                + 新規プレイリスト作成
+                </div>
+              }
             </li>
         </ul>
       </nav>
