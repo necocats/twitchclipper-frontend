@@ -68,7 +68,7 @@ const Cliplist: React.FC<CliplistProps> = ({ userId, currentPlaylistId, currentP
           {
             currentPlaylistId ? (
               <div className="nav-link text-white" data-bs-toggle="modal" data-bs-target="#addClipModal">
-                <ClipCard title={"新規クリップ追加"} broadcaster_name={"ここをクリックしてクリップを追加！"} thumbnail_url={addClipImage}/>
+                <ClipCard title={"新規クリップ追加"} broadcaster_name={"ここをクリック！"} thumbnail_url={addClipImage}/>
               </div>
             ) : (
               userId ? (
