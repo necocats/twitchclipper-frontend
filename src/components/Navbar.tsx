@@ -12,10 +12,9 @@ interface NavbarProps {
 
 function Navbar({ twitchClipperIconSrc, profileIconSrc, isLogin, handleSignIn, handleSignOut }: NavbarProps){
     const [isRotating, setIsRotating] = useState(false);
-  
     useKonamiCode(() => {
-      setIsRotating(true);
-      setTimeout(() => setIsRotating(false), 1000); // 1秒後に回転を停止
+        setIsRotating(true);
+        setTimeout(() => setIsRotating(false), 1000); // 1秒後に回転を停止
     });
     return (
         <>
