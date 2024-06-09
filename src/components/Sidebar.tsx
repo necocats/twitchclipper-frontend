@@ -47,6 +47,13 @@ const Sidebar: React.FC<SidebarProps> = ({userId, currentPlaylistId, isLogin, ha
       await axios.delete(`${baseApiUrl}playlists/${playlistId}`);
       const updatedPlaylists = playlists.filter(playlist => playlist.id !== playlistId);
       setPlaylists(updatedPlaylists);
+
+      // プレイリストが残ってたら一番上のプレイリストへ、ないならリロードや
+      if(playlists){
+        handlePlaylistChange(playlists[0].id, playlists[0].playlist_name);
+      }else{
+        window.location.reload();
+      }
     } catch (error) {
       console.error('Error delete playlist: ', error);
     }
