@@ -28,6 +28,9 @@ const AddPlaylistModal: React.FC<AddPlaylistModalProps> = ({handlePlaylistChange
   }, []);
 
   const handleSubmit = async () => {
+    if(!title || !description){
+      return handleErrorMessage('タイトルと説明文を入力してください。');
+    }
     const playlistData = {
       userId,
       playlistName: title,
@@ -54,6 +57,9 @@ const AddPlaylistModal: React.FC<AddPlaylistModalProps> = ({handlePlaylistChange
         }
         // 作成したプレイリストのクリップ一覧表示
         handlePlaylistChange(data["id"], data["playlist_name"]);
+
+        // エラーメッセージ消そう
+        handleErrorMessage('');
 
       } else {
         console.error('プレイリストの作成に失敗しました');
@@ -83,7 +89,7 @@ const AddPlaylistModal: React.FC<AddPlaylistModalProps> = ({handlePlaylistChange
                   aria-label="Sizing example input" 
                   aria-describedby="inputGroup-sizing-default"
                   value={title}
-                  onChange={(e) => {setTitle(e.target.value); e.target.value = "";}}
+                  onChange={(e) => setTitle(e.target.value)}
                   />
               </div>
               <div className="input-group mb-3">

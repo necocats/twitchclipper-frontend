@@ -43,6 +43,10 @@ const AddClipModal: React.FC<AddClipModalProps> = ({ userId, currentPlaylistId, 
             handlePlaylistChange(currentPlaylistId, currentPlaylistName);
             setClipUrl('');
 
+            // エラーメッセージも消す
+            handleErrorMessage('');
+
+
           } catch (error) {
             console.error(error);
             handleErrorMessage('クリップの追加に失敗しました');
@@ -52,6 +56,8 @@ const AddClipModal: React.FC<AddClipModalProps> = ({ userId, currentPlaylistId, 
         console.error(error);
         handleErrorMessage('クリップを追加できませんでした');
       }
+    } else {
+      handleErrorMessage('クリップURLを入力してください');
     }
   };
 

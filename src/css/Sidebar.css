@@ -6,6 +6,7 @@ body {
 .sidebar {
   /* width: 10%; */
   min-width: 200px;
+  max-width: 250px;
   /* height: calc(100vh - 56px); */
   min-height: calc(100vh - 56px);
   height: 100%;
@@ -31,10 +32,10 @@ body {
 }
 
 .nav-item .trash-icon {
-  display: none;
+  /* display: none; */
   /* position: absolute; */
   cursor: pointer;
-  color: rgb(177, 173, 173);
+  color: #212529;
 }
 
 .nav-item:hover .trash-icon {
