@@ -42,8 +42,14 @@ const Sidebar: React.FC<SidebarProps> = ({userId, currentPlaylistId, isLogin, ha
     handlePlaylistChange(playlistId, playlistName);
   }
 
-  const handleTrashClick = () => {
-    // playlist削除の処理
+  const handleTrashClick = async (playlistId: string) => {
+    try {
+      await axios.delete(`${baseApiUrl}playlists/${playlistId}`);
+      const updatedPlaylists = playlists.filter(playlist => playlist.id !== playlistId);
+      setPlaylists(updatedPlaylists);
+    } catch (error) {
+      console.error('Error delete playlist: ', error);
+    }
   };
 
   const alertLogin = () => {
@@ -70,7 +76,7 @@ const Sidebar: React.FC<SidebarProps> = ({userId, currentPlaylistId, isLogin, ha
                 className="bi bi-trash trash-icon"
                 onClick={(e) => {
                   e.stopPropagation(); // リンクのクリックイベントを発火させない
-                  handleTrashClick();
+                  handleTrashClick(playlist.id);
                 }}
               ></i>
               </div>

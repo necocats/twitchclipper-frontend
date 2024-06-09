@@ -43,13 +43,19 @@ const Cliplist: React.FC<CliplistProps> = ({ userId, currentPlaylistId, currentP
     };
     fetchPlaylists();
   }, [baseApiUrl, currentPlaylistId]);
+  
+  const handleTrashClick = async (clipId: string) => {
+    try {
+      await axios.delete(`${baseApiUrl}clips/${clipId}`);
+      const updatedClips = clips.filter(clip => clip.clip_id !== clipId);
+      setClips(updatedClips);
+    } catch (error) {
+      console.error('Error delete clip: ', error);
+    }
+  };
 
   const handleCardClick = (clipUrl: string) => {
     window.open(clipUrl, '_blank');
-  };
-
-  const handleTrashClick = () => {
-    //クリップ削除の処理
   };
 
   return (
@@ -67,7 +73,7 @@ const Cliplist: React.FC<CliplistProps> = ({ userId, currentPlaylistId, currentP
                 thumbnail_url={clip.thumbnail_url}
                 onClick={() => handleCardClick(clip.clip_url)}
                 showTrashIcon={true}
-                onTrashClick={() => handleTrashClick()}
+                onTrashClick={() => handleTrashClick(clip.clip_id)}
               />
             ))
           }
